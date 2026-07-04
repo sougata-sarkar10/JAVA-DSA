@@ -1,6 +1,13 @@
 
 public class LL13 {
     Node head;
+
+    private int size;
+
+    LL13(){
+        this.size = 0;
+    }
+    
     class Node{
         String data;
         Node next;
@@ -8,6 +15,7 @@ public class LL13 {
         Node(String data){
             this.data = data;
             this.next = null;
+            size++;
         }
     } 
     
@@ -15,7 +23,7 @@ public class LL13 {
     public void addFirst(String data){
         Node newNode = new Node(data);
         if(head == null){
-            head = new Node(data);
+            head = newNode;
             return;
         }
         newNode.next = head;
@@ -25,14 +33,14 @@ public class LL13 {
     public void addLast(String data){
         Node newNode = new Node(data);
         if(head == null){
-            head = new Node(data);
+            head = newNode; 
             return;
         }
         Node currNode = head;
         while(currNode.next != null){
             currNode = currNode.next;
         }
-        currNode.next = new Node(data);
+        currNode.next = newNode;
     }
 
     public void printList(){
@@ -48,6 +56,39 @@ public class LL13 {
         System.out.println("null");
     }
 
+    // Delete Node
+    public void deleteFirst(){
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }
+        size--;
+        head = head.next;
+    }
+
+    public void deleteLast(){
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }
+        size--;
+        if(head.next == null){
+            head = null;
+            return;
+        }
+        Node secondLast = head;
+        Node lastNode = head.next;
+        while(lastNode.next != null){
+            secondLast = secondLast.next;
+            lastNode = lastNode.next;
+        }
+        secondLast.next = null;
+    }
+
+    public int getSize(){
+        return size;
+    }
+
     public static void main(String[] args) {
         LL13 list = new LL13();
 
@@ -56,6 +97,14 @@ public class LL13 {
         list.addLast("linked");
         list.addLast("list");
         list.printList();
+
+        list.deleteFirst();
+        list.printList();   
+
+        list.deleteLast();
+        list.printList();
+
+        System.out.println(list.getSize());
     }
     
 }
