@@ -28,6 +28,6 @@ public class LLfunction14 {
         for(int i = 0; i < list.size(); i++){
             System.out.print(list.get(i) + " -> ");
         }
-        System.out.println("null");
+        System.out.println("null"); //it addes in the back of the list
     }
 }
