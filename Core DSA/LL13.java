@@ -89,6 +89,42 @@ public class LL13 {
         return size;
     }
 
+    //Reverse a linked list
+    public void reverseListIterative(){
+        if(head == null || head.next == null){
+            return;
+        }
+        Node prevNode = head;
+        Node currNode = head.next;
+        while(currNode != null){
+            Node nextNode = currNode.next;
+            currNode.next = prevNode;
+
+            //Update
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        head.next = null;
+        head = prevNode;
+    }
+
+    private Node reverseListRecursiveHelper(Node node){
+        if(node == null || node.next == null){
+            return node;
+        }
+        Node newHead = reverseListRecursiveHelper(node.next);
+        node.next.next = node;
+        node.next = null;
+        return newHead;
+    }
+
+    public void reverseListRecursive(){
+        if(head == null || head.next == null){
+            return;
+        }
+        reverseListRecursiveHelper(head);
+    }
+
     public static void main(String[] args) {
         LL13 list = new LL13();
 
@@ -105,6 +141,12 @@ public class LL13 {
         list.printList();
 
         System.out.println(list.getSize());
+
+        list.reverseListIterative();
+        list.printList();
+
+        list.reverseListRecursive();
+        list.printList();
     }
     
 }
