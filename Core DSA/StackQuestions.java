@@ -27,6 +27,14 @@ public class StackQuestions {
 
     //Reverse a stack 
 
+    public static void reverseStack(Stack<Integer> s){
+        if(s.isEmpty()){
+            return;
+        }
+        int top = s.pop();
+        reverseStack(s);
+        pushAtBottom(top, s);
+    }
     public static void printStack(Stack<Integer> s){
         while(!s.isEmpty()){
             System.out.println(s.peek() + " ");
@@ -39,12 +47,15 @@ public class StackQuestions {
         s.push(1);
         s.push(2);
         s.push(3);
-        printStack(s); // Output: 3 2 1
+        // printStack(s); // Output: 3 2 1
 
-        pushAtBottom(4, s);
-        printStack(s);
+        // pushAtBottom(4, s);
+        // printStack(s);
 
-        pushAtBottomrec(5, s);
+        // pushAtBottomrec(5, s);
+        // printStack(s);
+
+        reverseStack(s);
         printStack(s);
     }
 }
